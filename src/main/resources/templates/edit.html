@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template">
+<head>
+<meta charset="utf-8">
+<title>Page Stagiaire</title>
+</head>
+<body>
+	<div layout:fragment="pageContent">
+		<div class="container my-4 ">
+			<div class="uk-card uk-card-default uk-card-small uk-card-body my-4">
+				<h3 class="uk-card-title my-4">Ajoute nouvell stagiaire</h3>
+				<form class="uk-form-horizontal uk-margin-large" th:action="@{updateStagiaire}" method="POST" >
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Id</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-horizontal-text" type="text" placeholder="Nom " name="id" th:value="${stagiaire.id}">
+							<small style="color:red" th:errors=${stagiaire.nom}></small>
+						</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Nom stagiaire</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-horizontal-text" type="text" placeholder="Nom " name="nom" th:value="${stagiaire.nom}">
+							<small style="color:red" th:errors=${stagiaire.nom}></small>
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Prénom stagiaire</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-horizontal-text" type="text" placeholder="Prénom" th:value="${stagiaire.prenom}" name="prenom">
+							<small style="color:red" th:errors=${stagiaire.prenom}></small>
+						</div>
+					</div>
+					<div class="uk-margin">
+						<label class="uk-form-label" for="form-horizontal-text">Date de naissance</label>
+						<div class="uk-form-controls">
+							<input class="uk-input" id="form-horizontal-text" type="date" name="dateNaissance" th:value="${stagiaire.dateNaissance}">
+							<small style="color:red" th:errors=${stagiaire.dateNaissance}></small>
+						</div>
+					</div>
+					 
+					<input class="uk-button uk-button-default"  type="submit" >
+						 
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

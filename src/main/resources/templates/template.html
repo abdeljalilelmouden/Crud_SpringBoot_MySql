@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="/webjars/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="/webjars/uikit/3.3.0/css/uikit.css">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+			<a class="navbar-brand" th:href="@{stagiaires}">Gestion des etudiant</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> 
+						<span sec:authentication="name"></span>
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" th:href="@{logout}">Déconnexion</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<section layout:fragment="pageContent">
+	
+	</section>
+	<script src="/webjars/jquery/3.4.1/jquery.js"></script>
+	<script src="/webjars/popper.js/1.14.3/popper.js"></script>
+	<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+	<script src="/webjars/uikit/3.3.0/js/uikit.js"></script>
+</body>
+</html>

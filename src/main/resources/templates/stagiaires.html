@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorator="template">
+<head>
+<meta charset="utf-8">
+<title>Page Etudiant</title>
+</head>
+<body>
+	<div layout:fragment="pageContent">
+		<div class="container">
+			<div class="uk-card uk-card-default uk-card-small uk-card-body my-4">
+				<div class="row">
+				<div class="col text-left">
+					<h3 class="uk-card-title">List Des Stagiaire</h3>
+				</div>
+				<div class="col text-right">
+					<form class="form-inline" method="GET" th:action="@{/stagiaires}">
+						<div class="form-group">
+							<input placeholder="cherche" type="text" name="mc" th:value="${mc}" class="form-control mx-sm-3">
+							<input type="submit" class="uk-button uk-button-default" value="Chercher">
+						</div>
+					</form>
+				</div>
+			</div>
+				<table class="table table-sm text-center">
+					<thead>
+						<tr>
+							<th>#ID</th>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Date de naissance</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')">modifier</th>
+							<th sec:authorize="hasRole('ROLE_ADMIN')">supprimer</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="stagiaire:${stagiaires}">
+							<td th:text="${stagiaire.id}"></td>
+							<td th:text="${stagiaire.nom}"></td>
+							<td th:text="${stagiaire.prenom}"></td>
+							<td th:text="${stagiaire.dateNaissance}"></td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')">
+								<a th:href="@{formEditStagiaire(id=${stagiaire.id})}"><i class="fa fa-edit"></i></a>
+							</td>
+							<td sec:authorize="hasRole('ROLE_ADMIN')">
+								<a th:href="@{deleteStagiaire(id=${stagiaire.id},mc=${mc})}" onclick="return confirm(' Confirmation !!!')"><i class="fa fa-close"></i></a>
+							</td>
+						</tr>
+					</tbody>	
+				</table>
+				<div class="row">
+					<div sec:authorize="hasRole('ROLE_ADMIN')" class="col text-left">
+						<a class="uk-button uk-button-default" th:href="@{formAjouteStagiaire}">Ajoute
+							Stagiaire</a>
+					</div>
+					<div class="col text-right">
+						<ul class="uk-pagination">
+							<li th:each="page,status:${pages}">
+							<a th:href="@{/stagiaires(page=${status.index},mc=${mc})}" th:text="${status.index +1 }"   ></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
